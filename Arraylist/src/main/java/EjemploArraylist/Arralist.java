@@ -48,8 +48,44 @@ public class Arralist {
 
                             if (confirmacion == JOptionPane.YES_OPTION) {
 
-                                elemento = JOptionPane.showInputDialog("\nIngrese el elemento que desee:");
-                                ejemploArrayList.add(elemento);
+                                int opcionAgregar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la forma de agregar el elemento\n\n"
+                                        + "1. Agregar con indice\n"
+                                        + "2. Agregar elemento en fila\n "
+                                        + "3. Menu principal"));
+
+                                switch (opcionAgregar) {
+                                    
+                                    case 1:
+
+                                        int indiceAgregar = Integer.parseInt(JOptionPane.showInputDialog(
+                                                "\nIngrese el indice donde desea se almacene elemento:\n"));
+                                        elemento = JOptionPane.showInputDialog("\nIngrese el elemento que desee:");
+                                        ejemploArrayList.add(indiceAgregar, elemento);
+
+                                        JOptionPane.showMessageDialog(null, "Elemento en el índice " + indiceAgregar
+                                                + " Agregado.\nArrayList actualizado:\n"
+                                                + ejemploArrayList, "Elemento agregado", JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+
+                                    case 2:
+
+                                        elemento = JOptionPane.showInputDialog("\nIngrese el elemento que desee:");
+                                        ejemploArrayList.add(elemento);
+
+                                        break;
+                                        
+                                    case 3:
+                                        
+                                        salirMenu = true;
+                                        
+                                        break;
+
+                                    default:
+                                        
+                                        JOptionPane.showMessageDialog(null, "Ingrese una opcion del menu");
+                                        break;
+                                }
 
                             } else if (confirmacion == JOptionPane.NO_OPTION) {
                                 salirMenu = true;
@@ -126,7 +162,9 @@ public class Arralist {
                                     break;
 
                                 default:
+                                    
                                     JOptionPane.showMessageDialog(null, "Ingrese las opciones del menu");
+                                    break;
                             }
 
                         } while (!salirMenu);
@@ -134,18 +172,26 @@ public class Arralist {
                         break;
 
                     case 3:
+                        
+                        mostrarArrayList(ejemploArrayList);
 
-                        if (ejemploArrayList.isEmpty()) {
+                        break;
+                        
+                    case 4:
+                        
+                        int sizeArraylist = tamañoArrayList(ejemploArrayList);
+//                        
+//                        
+                        if (sizeArraylist == 0) {
                             
-                            JOptionPane.showMessageDialog(null, "El Arraylist esta vacio");
+                            JOptionPane.showMessageDialog(null, "El ArrayList no tiene elementos, esta vacio");
                             
                         } else {
                             
-                            mostrarArrayList(ejemploArrayList);
+                            JOptionPane.showMessageDialog(null, "El tamaño del ArrayList es: " + sizeArraylist);
                         }
                         
                         
-
                         break;
 
                     case 15:
@@ -175,13 +221,25 @@ public class Arralist {
 
         mensaje = new StringBuilder("Imprimiendo ArrayList\n\n");
 
-        for (int i = 0; i < Arraylist.size(); i++) {
+        if (ejemploArrayList.isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "El Arraylist esta vacio");
+
+        } else {
+
+           for (int i = 0; i < Arraylist.size(); i++) {
 
             mensaje.append("posicion " + i + ": " + Arraylist.get(i) + "\n");
 
         }
         JOptionPane.showMessageDialog(null, mensaje);
         mensaje = new StringBuilder();
+        }
+    }
+
+    private static int tamañoArrayList(ArrayList<Object> ArrayList) {
+
+        return ArrayList.size();
     }
 
 }
