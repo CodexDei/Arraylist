@@ -94,7 +94,7 @@ public class Arraylist {
                         break;
 
                     case 7:
-                        
+
                         ArrayList<Object> arraylist2 = new ArrayList<>();
 
                         int opcionComparar = Integer.parseInt(JOptionPane.showInputDialog(
@@ -112,12 +112,11 @@ public class Arraylist {
 
                             case 2:
 
-                                
                                 agregarArrayList(arraylist2);
                                 Object elementosIguales = compararArraylist(ejemploArrayList, arraylist2);
                                 JOptionPane.showMessageDialog(null,
                                         "Los elementos iguales son: " + elementosIguales);
-                                
+
                                 break;
 
                             default:
@@ -125,95 +124,125 @@ public class Arraylist {
                         }
 
                         break;
-                        
+
                     case 8:
-                        
+
                         copiarArralist(ejemploArrayList);
-                        
+
                         break;
-                        
+
                     case 9:
-                        
+
                         String elementoBuscar = JOptionPane.showInputDialog("Ingrese el valor a buscar");
-                        
+
                         buscarElemento(ejemploArrayList, elementoBuscar);
-                        
+
                         break;
-                        
+
                     case 10:
-                        
+
                         boolean resultadoVacio = verificarVacio(ejemploArrayList);
-                        
+
                         if (resultadoVacio) {
-                            
+
                             JOptionPane.showMessageDialog(null, "EL ArrayList esta vacio");
-                            
+
                         } else {
-                            
+
                             JOptionPane.showMessageDialog(null, "EL ArrayList tiene elementos");
                         }
-                        
+
                         break;
-                        
+
                     case 11:
-                        
+
                         //verificar primer elemento
-                        
                         String indiceBuscar = JOptionPane.showInputDialog(
                                 "Ingrese el elemento del cual desea se proporcione el indice");
-                        
+
                         int indice = buscarPrimeraAparicion(ejemploArrayList, indiceBuscar);
-                        
+
                         if (indice != -1) {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento "+"' " + indiceBuscar
-                                    +" '"+ " aparece la primera vez en el indice: " + indice);
-                            
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + "' " + indiceBuscar
+                                    + " '" + " aparece la primera vez en el indice: " + indice);
+
                         } else {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento "+"' " + indiceBuscar
-                                    + " '"+ " NO se encuentra en el arralist");
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + "' " + indiceBuscar
+                                    + " '" + " NO se encuentra en el arralist");
                         }
-                        
+
                         break;
-                        
+
                     case 12:
-                        
+
                         String ultimoIndice = JOptionPane.showInputDialog(
                                 "Ingrese el elemento del cual desea se proporcione la ultima aparicion");
-                        
+
                         int ultimaAparicion = buscarUltimaAparicion(ejemploArrayList, ultimoIndice);
-                        
+
                         if (ultimaAparicion != -1) {
-                            
-                            JOptionPane.showMessageDialog(null, "La ultima aparicion del elemento "+"' " + ultimoIndice
-                                    +" '"+ " se encuentra en el indice: " + ultimaAparicion);
-                            
+
+                            JOptionPane.showMessageDialog(null, "La ultima aparicion del elemento " + "' " + ultimoIndice
+                                    + " '" + " se encuentra en el indice: " + ultimaAparicion);
+
                         } else {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento "+"' " + ultimoIndice
-                                    + " '"+ " NO se encuentra en el arralist");
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + "' " + ultimoIndice
+                                    + " '" + " NO se encuentra en el arralist");
                         }
-                        
+
                         break;
-                    
+
                     case 13:
-                        
+
                         String elementoBuscarIndice = JOptionPane.showInputDialog(
                                 "Ingrese el elemento del cual desea se busque el indice o indices");
-                        
+
                         List<Integer> indices = buscarIndices(ejemploArrayList, elementoBuscarIndice);
-                        
+
                         if (!indices.isEmpty()) {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento "+"'" + elementoBuscarIndice
-                                    +"'"+ " se encuentra en el indice o indices: " + indices);
-                            
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + "' " + elementoBuscarIndice
+                                    + " '" + " se encuentra en el indice o indices: " + indices);
+
                         } else {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento "+"'" + elementoBuscarIndice
-                                    + "'"+ " NO se encuentra en el arralist");
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + "' " + elementoBuscarIndice
+                                    + " '" + " NO se encuentra en el arralist");
                         }
+
+                        break;
+
+                    case 14:
+
+                        ArrayList<String> Imprimir = new ArrayList<>();
+
+                        mensaje = new StringBuilder("Imprimiendo ArrayList actual:\n\n");
+
+                        for (int i = 0; i < ejemploArrayList.size(); i++) {
+
+                            mensaje.append("Posicion " + i + ": " + ejemploArrayList.get(i) + "\n");
+
+                        }
+                        int fromIndex = Integer.parseInt(JOptionPane.showInputDialog(mensaje.append
+                                        ("\nIndique desde que indice desea la porcion del ArrayList\n "
+                                         + "Ej: Desde el indice 1\n")));
+
+                        int toIndex = Integer.parseInt(JOptionPane.showInputDialog(mensaje.append
+                                        ("\nAhora hasta que indice desea el ArrayList\n"
+                                         + "Ej: HAsta el indice 2\n")));
+                        
+                        //Le sumamos un '1' para que el limite sea incluyente para 'toIndex'
+                        toIndex = toIndex + 1;
+
+                        List<Object> sublist = porcionArrayList(ejemploArrayList,fromIndex, toIndex);
+                        
+                        mensaje.append("\nLos elementos del indice " + fromIndex + " al indice " + toIndex + " son:\n")
+                               .append("\n" + sublist);
+                        
+                        JOptionPane.showMessageDialog(null, mensaje);
                         
                         break;
 
@@ -263,10 +292,10 @@ public class Arraylist {
                                 "\nIngrese el indice donde desea se almacene elemento:\n"));
                         Object elemento = JOptionPane.showInputDialog("\nIngrese el elemento que desee:");
                         arrayList.add(indiceAgregar, (T) elemento);
-                        
-                        if(elemento == null){
-                        
-                        String str = (String) elemento;
+
+                        if (elemento == null) {
+
+                            String str = (String) elemento;
                         }
 
                         JOptionPane.showMessageDialog(null, "Elemento en el índice " + indiceAgregar
@@ -500,37 +529,37 @@ public class Arraylist {
 
     private static <T> void copiarArralist(ArrayList<T> ejemploArrayList) {
 
-            ArrayList<Object> nuevoArraylist = new ArrayList<>(ejemploArrayList);
-                        
-                        mensaje.append("ARRAYLIST ORIGINAL");
-                        
-                        for (int i = 0; i < ejemploArrayList.size(); i++) {
-                            
-                            mensaje.append("Posicion " + i + ": " + ejemploArrayList.get(i) + "\n");
-                        }
-                        
-                        mensaje.append("\nARRAYLIST COPIADO\n\n");
-                        
-                        for (int i = 0; i < nuevoArraylist.size(); i++) {
-                            
-                            mensaje.append("Posicion " + i + ": " + nuevoArraylist.get(i) + "\n");
-                        }
-                        
-                        JOptionPane.showMessageDialog(null, mensaje);
+        ArrayList<Object> nuevoArraylist = new ArrayList<>(ejemploArrayList);
+
+        mensaje.append("ARRAYLIST ORIGINAL");
+
+        for (int i = 0; i < ejemploArrayList.size(); i++) {
+
+            mensaje.append("Posicion " + i + ": " + ejemploArrayList.get(i) + "\n");
+        }
+
+        mensaje.append("\nARRAYLIST COPIADO\n\n");
+
+        for (int i = 0; i < nuevoArraylist.size(); i++) {
+
+            mensaje.append("Posicion " + i + ": " + nuevoArraylist.get(i) + "\n");
+        }
+
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     private static <T> void buscarElemento(ArrayList<T> arraylist, String elementoBuscar) {
 
-                        boolean resultadoBusqueda = arraylist.contains(elementoBuscar);
-                        
-                        if(resultadoBusqueda == true){
-                        
-                            JOptionPane.showMessageDialog(null, "EL elemento " + elementoBuscar + " esta en el arraylist");
-                        
-                        }else{
-                            JOptionPane.showMessageDialog(null,"NO esta el elemento " + elementoBuscar + " en el arraylist");
-                        }
-                        
+        boolean resultadoBusqueda = arraylist.contains(elementoBuscar);
+
+        if (resultadoBusqueda == true) {
+
+            JOptionPane.showMessageDialog(null, "EL elemento " + elementoBuscar + " esta en el arraylist");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "NO esta el elemento " + elementoBuscar + " en el arraylist");
+        }
+
     }
 
     private static <T> boolean verificarVacio(ArrayList<T> arraylist) {
@@ -542,47 +571,58 @@ public class Arraylist {
     private static <T> int buscarPrimeraAparicion(ArrayList<T> arraylist, T elemento) {
 
         if (elemento == null) {
-            
+
             throw new IllegalArgumentException("El elemento no puede ser nulo");
-            
-        } 
-        
-        int indice = arraylist.indexOf(elemento);   
-        
+
+        }
+
+        int indice = arraylist.indexOf(elemento);
+
         return indice;
-        
+
     }
-    
+
     private static <T> int buscarUltimaAparicion(ArrayList<T> arraylist, T elemento) {
 
         if (elemento == null) {
-            
+
             throw new IllegalArgumentException("El elemento no puede ser nulo");
-            
-        } 
-        
-        int indice = arraylist.lastIndexOf(elemento);   
+
+        }
+
+        int indice = arraylist.lastIndexOf(elemento);
         return indice;
-        
+
     }
-    
-    private static <T> List<Integer> buscarIndices(ArrayList<T> arraylist, T elemento){
-    
+
+    private static <T> List<Integer> buscarIndices(ArrayList<T> arraylist, T elemento) {
+
         if (arraylist == null || elemento == null) {
-            
+
             throw new IllegalArgumentException("El ArrayList o elemento no puede ser nulo");
-            
-        } 
-        
+
+        }
+
         ArrayList<Integer> indices = new ArrayList<>();
-        
+
         for (int i = 0; i < arraylist.size(); i++) {
-            
+
             if (elemento.equals(arraylist.get(i))) {
                 indices.add(i);
             }
         }
         return indices;
+    }
+
+    private static List<Object> porcionArrayList(ArrayList<Object> arrayList, int fromIndex, int toIndex) {
+
+        if (fromIndex < 0 || toIndex > arrayList.size() || fromIndex > toIndex) {
+            
+            throw new IllegalArgumentException("El indice no es valido");
+            
+        } else {
+            return arrayList.subList(fromIndex, toIndex);
+        }
     }
 
     //creamos esta clase para que funcione el metodo ordenarAtoZ y ordenarZtoA, puesto que el Arraylist es object
